@@ -33,6 +33,22 @@ section.quick-access.in {
     margin: 0;
 }
 
+section.quick-access.in>input.links{
+    padding: 0.5em 1em;
+}
+
+dialog {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    background-color: var(--bg-darker);
+}
+
+dialog  input {
+    margin: 0.5em 0;
+}
+
 @media (max-width: 630px) {
     section.quick-access {
         flex-direction: column;
