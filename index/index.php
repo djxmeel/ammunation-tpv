@@ -42,38 +42,53 @@ require_once("../modules/sql.php");?>
             <table class="product-to-cart">
                 <tr>
                     <th colspan="3">
-                        <input type="text" name="productcode" id="productcode" placeholder="Search by code">
+                        Search :
+                        <input type="text" name="productcode" id="productcode" placeholder="Code">
                     </th>
                 </tr>
                 <tr>
+                    <th class="th-small"></th>
                     <th>Name</th>
                     <th class="th-small">Stock</th>
                     <th class="th-small">Add</th>
                 </tr>
-                <tr>
-                    <td class="td-small">Gun name</td>
-                    <td class="td-small"><i class='bx bx-x'></i></td>
-                    <td class="td-small"><i class='bx bx-plus-circle'></i></td>
-                </tr>
-                <tr>
-                    <td class="td-small">Gun name</td>
-                    <td class="td-small"><i class='bx bx-check'></i></td>
-                    <td class="td-small"><i class='bx bx-plus-circle'></i></td>
-                </tr>
+                <?php 
+                    if(!isset($_GET["cat"]))
+                        $query = "SELECT * FROM productos";
+                    else {
+                        $cat = $con->real_escape_string($_GET["cat"]);
+
+                        $query = "SELECT * FROM productos WHERE id_categoria=". $cat;
+                    }
+
+                    $result = $con->query($query);
+
+                    while($row = $result->fetch_assoc()){
+                        echo "<tr>
+                                <td class='td-small'><img src='../img/guns/".$row["img"]."'></td>
+                                <td>".$row["nombre"]."</td>";
+
+                                if($row["stock"] > 0) echo "<td class='td-small'><i class='bx bx-check'></i></td>";
+                                else echo "<td class='td-small'><i class='bx bx-x'></i></td>";
+                        
+                        echo    "<td class='td-small'><i class='bx bx-plus-circle'></i></td>
+                            </tr>";
+                    }
+                ?>
             </table>
         </section>
         <section class="col-2">
             <div class="grid-categories">
-                <img src="../img/icon.png" class="item-category">
-                <img src="../img/icons/assaultrifle.png" class="item-category">
-                <img src="../img/icons/submachinegun.png" class="item-category">
-                <img src="../img/icons/shotgun.png" class="item-category">
-                <img src="../img/icons/lmg.png" class="item-category">
-                <img src="../img/icons/sniperrifle.png" class="item-category">
-                <img src="../img/icons/handgun.png" class="item-category">
-                <img src="../img/icons/meleeweapon.png" class="item-category">
-                <img src="../img/icons/explosive.png" class="item-category">
-                <img src="../img/icons/ammo.png" class="item-category">
+                <a href='index.php'><img src="../img/icon.png" class="item-category"></a>
+                <a href='index.php?cat=1'><img src="../img/icons/assaultrifle.png" class="item-category"></a>
+                <a href='index.php?cat=2'><img src="../img/icons/submachinegun.png" class="item-category"></a>
+                <a href='index.php?cat=3'><img src="../img/icons/shotgun.png" class="item-category"></a>
+                <a href='index.php?cat=4'><img src="../img/icons/lmg.png" class="item-category"></a>
+                <a href='index.php?cat=5'><img src="../img/icons/sniperrifle.png" class="item-category"></a>
+                <a href='index.php?cat=6'><img src="../img/icons/handgun.png" class="item-category"></a>
+                <a href='index.php?cat=7'><img src="../img/icons/meleeweapon.png" class="item-category"></a>
+                <a href='index.php?cat=8'><img src="../img/icons/explosive.png" class="item-category"></a>
+                <a href='index.php?cat=9'><img src="../img/icons/ammo.png" class="item-category"></a>
             </div>
         </section>
         <section class="payment">

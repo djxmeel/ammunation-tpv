@@ -9,7 +9,9 @@
                 <th class="break-none">DNI</th>
                 <th>Name</th>
                 <th>Last name</th>
-                <th>Details</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Register date</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -22,7 +24,7 @@
                     unset($_GET["deleteid"]);
                 }
 
-                $query = "SELECT dni,nombre,apellido1,apellido2 FROM clientes";
+                $query = "SELECT dni,nombre,apellido1,apellido2, direccion, contacto, fecha_alta FROM clientes";
 
                 $result = $con->query($query);
 
@@ -31,7 +33,9 @@
                             <td class='break-none'>". $row["dni"] ."</td>
                             <td class='category-options'>".$row["nombre"]."</td>
                             <td class ='category-options'>". $row["apellido1"]." ". $row["apellido2"] ."</td>
-                            <td><a class='category-options details' href='customer_detail.php?dni=".$row["dni"]."'><i class='bx bx-info-circle' ></i></a></td>
+                            <td class='category-options'>".$row["direccion"]."</td>
+                            <td class='category-options'>".$row["contacto"]."</td>
+                            <td class='category-options'>".$row["fecha_alta"]."</td>
                             <td><a class='category-options edit' href='customer_list.php?dni=".$row["dni"]."'><i class='bx bx-edit-alt' ></i></a></td>
                             <td><a class='category-options delete' onClick=\"return confirm('Are you sure?')\" href='customer_list.php?deleteid=".$row["dni"]."'><i class='bx bx-x' ></i></a></td>
                         <tr>";
@@ -82,7 +86,7 @@
                         <td><input name='c_contact' type='text' value='".$row["contacto"]."'/></td>
                     </tr>
                     <tr>
-                        <td><input class='links' id='closeMod' type='button' value='<< Back'></td>
+                        <td><a href='customer_list.php'><input class='links' id='closeMod' type='button' value='<< Back'></a></td>
                         <td><input name='confirm_c_edit' class='links' type='submit' value='Confirm'></td>
                     </tr>
                 </table>
@@ -95,10 +99,6 @@
 
             modal.showModal();
 
-
-            closeModal.addEventListener('click', () => {
-                modal.close();
-            })
             </script>";
             }
  
