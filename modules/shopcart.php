@@ -6,7 +6,7 @@
     if(!isset($_SESSION["actual"])){
         $_SESSION["actual"] = array(
             "id" => array(),
-            "quantity" => array()
+            "quantity" => array(), 
         );
     }
 

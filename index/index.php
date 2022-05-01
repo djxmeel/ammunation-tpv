@@ -1,5 +1,7 @@
 <?php require_once("../modules/header.php");
 require_once("../modules/sql.php");
+
+unset($_SESSION["actual"]);
 ?>
 
 <script>
@@ -57,7 +59,7 @@ require_once("../modules/sql.php");
                                         <td>".$row["nombre"]."</td>
                                         <td class='td-small'>".$_SESSION["actual"]["quantity"][$indexSession]."</td>
                                         <td class='td-small'>".$row["precio"]."</td>
-                                        <td class='td-small'>".$row["precio"]*$_SESSION["actual"]["quantity"][$indexSession]."</td>
+                                        <td class='td-small subtotal'>".$row["precio"]*$_SESSION["actual"]["quantity"][$indexSession]."</td>
                                     </tr>";
                                 }
                                 
