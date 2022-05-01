@@ -99,6 +99,11 @@ td .links, td .links input[type="button"]  {
     margin: 0;
 }
 
+.links#clearbtn {
+    margin: 0;
+    padding: 0.1em 0.5em;
+}
+
 .print {
     padding: 0.2em 1em;
 }
@@ -314,6 +319,7 @@ div.payment-methods {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(5, 1fr);
     gap: 0.2em;
+    max-height: 672px;
 }
 
 .item-category {

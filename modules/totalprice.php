@@ -15,5 +15,7 @@
             }
         }
         echo "<h1>Total: ".$total."</h1>";
-    } 
+    } else {
+        echo "<h1>Total: 0</h1>";
+    }
 ?>

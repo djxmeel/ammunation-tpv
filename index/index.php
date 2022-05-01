@@ -1,24 +1,28 @@
 <?php require_once("../modules/header.php");
 require_once("../modules/sql.php");
 
-unset($_SESSION["actual"]);
+//unset($_SESSION["actual"]);
 ?>
-
 <script>
     $(document).ready(function() {
         $("td.td-small>button").click(function(){
             $("#cart").load("../modules/shopcart.php", {id: this.id});
             $("#totalPrice").load("../modules/totalprice.php");
         });
+
+        $("#clearbtn").click(function(){
+            $("#cart").load("../modules/clearcart.php");
+            $("#totalPrice").load("../modules/totalprice.php");
+        });
     });
 </script>
-
 <title>WELCOME TO AMMUNATION</title>
 <main class="home_content">
     <h1>WELCOME TO AMMUNATION <?php echo strtoupper($_SESSION["username"]) ?> <i class='bx bx-crosshair'></i></h1>
     <article class="dash-content row">
         <section class="col-5 ">
             <h1>Cart</h1>
+            <input class="links" id="clearbtn" type="button" value="Clear Cart">
         </section>
         <section class="col-5 product-list">
             <h1>Products</h1>
@@ -124,7 +128,7 @@ unset($_SESSION["actual"]);
         </section>
         <section class="payment">
                 <div id="totalPrice">
-                    <h1>Total:</h1>  
+                    <h1>Total: 0</h1>  
                 </div>
                 <div class="payment methods">
                     <input type="button" value="Cash" class="links payment"><br>
