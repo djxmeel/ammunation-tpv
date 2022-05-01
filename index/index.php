@@ -1,5 +1,16 @@
 <?php require_once("../modules/header.php");
-require_once("../modules/sql.php");?>
+require_once("../modules/sql.php");
+?>
+
+<script>
+    $(document).ready(function() {
+        $("td.td-small>button").click(function(){
+            $("#cart").load("../modules/shopcart.php", {id: this.id});
+            $("#totalPrice").load("../modules/totalprice.php");
+        });
+    });
+</script>
+
 <title>WELCOME TO AMMUNATION</title>
 <main class="home_content">
     <h1>WELCOME TO AMMUNATION <?php echo strtoupper($_SESSION["username"]) ?> <i class='bx bx-crosshair'></i></h1>
@@ -14,7 +25,7 @@ require_once("../modules/sql.php");?>
             <h1>Categories</h1>
         </section>
         <section class="cart col-5">
-            <table class="cart">
+            <table id="cart" class="cart">
                     <tr>
                         <th colspan="2" class="cart">ID Compra</th>
                         <td colspan="2" class="cart">
@@ -30,12 +41,30 @@ require_once("../modules/sql.php");?>
                         <th class="th-small">Unit</th>
                         <th class="th-small">Sub.</th>
                     </tr>
-                    <tr>
-                        <td>Gun name</td>
-                        <td class="td-small">5</td>
-                        <td class="td-small">3000</td>
-                        <td class="td-small">15000</td>
-                    </tr>
+                    <?php
+                        if(isset($_SESSION["actual"])){
+                            $indexSession = 0;
+    
+                            foreach ($_SESSION["actual"]["id"] as $elementId) {
+                                $query = "SELECT * FROM productos WHERE id=".$elementId;
+    
+                                $result = $con->query($query);
+                                
+    
+                                while($row = $result->fetch_assoc()) {
+                                    echo "
+                                    <tr>
+                                        <td>".$row["nombre"]."</td>
+                                        <td class='td-small'>".$_SESSION["actual"]["quantity"][$indexSession]."</td>
+                                        <td class='td-small'>".$row["precio"]."</td>
+                                        <td class='td-small'>".$row["precio"]*$_SESSION["actual"]["quantity"][$indexSession]."</td>
+                                    </tr>";
+                                }
+                                
+                                $indexSession++;
+                            }
+                        }
+                    ?>
                 </table>
         </section>
         <section class="col-5 product-to-cart">
@@ -71,7 +100,7 @@ require_once("../modules/sql.php");?>
                                 if($row["stock"] > 0) echo "<td class='td-small'><i class='bx bx-check'></i></td>";
                                 else echo "<td class='td-small'><i class='bx bx-x'></i></td>";
                         
-                        echo    "<td class='td-small'><i class='bx bx-plus-circle'></i></td>
+                        echo    "<td class='td-small'><button id='".$row["id"]."'><i class='bx bx-plus-circle'></i></button></td>
                             </tr>";
                     }
                 ?>
@@ -92,7 +121,7 @@ require_once("../modules/sql.php");?>
             </div>
         </section>
         <section class="payment">
-                <div class="">
+                <div id="totalPrice">
                     <h1>Total:</h1>  
                 </div>
                 <div class="payment methods">

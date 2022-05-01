@@ -336,7 +336,25 @@ div.payment-methods {
     color: green;
 }
 
+.bx-plus-circle {
+    color: var(--white);
+}
+
 .devise {
     font-size: 1.5em;
     padding-right: 0.5em;
+}
+
+td.td-small>button {
+    background-color: transparent;
+    border: none;
+    transition: 0.03s;
+}
+
+td.td-small>button:hover {
+    transform: scale(120%);
+}
+
+td.td-small>button:active {
+    transform: scale(100%);
 }
