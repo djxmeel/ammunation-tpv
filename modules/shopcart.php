@@ -24,7 +24,7 @@
 ?>
 
 <tr>
-<th colspan="2" class="cart">ID Compra</th>
+<th colspan="2" class="cart"><input class="links" onclick="clearBtn()" id="clearbtn" type="button" value="Clear Cart"> ID Compra</th>
     <td colspan="2" class="cart">
         ID cliente
         <select name="clientes" id="clientes">

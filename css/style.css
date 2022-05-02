@@ -253,8 +253,14 @@ table.cart th, table.cart td {
     padding-left: 0.7em;
 }
 
+@media (min-height: 720px) {
+    #welcome-msg{
+        display: none;
+    }
+}
+
 section.cart {
-    height: 40rem;
+    height: 34rem;
     background-color: var(--white);
     border: 6px inset gray;
     padding: 0;
@@ -280,7 +286,7 @@ td.td-small>img {
 section.product-to-cart {
     border: 2px solid var(--white);
     overflow-y: scroll;
-    height: 40rem;
+    height: 34rem;
 }
 
 table.product-to-cart {
@@ -296,7 +302,7 @@ section.payment {
 
 section.payment input[type="button"] {
     margin: 0;
-    margin-top: 0.5em;
+    margin-top: 0.2em;
     padding: 0.4em 1em;
     background: var(--primary);
     color: var(--white);
@@ -330,8 +336,15 @@ div.payment-methods {
 }
 
 .item-category:hover {
-    background-color: rgb(88, 86, 82);
+    background-color: var(--bg-darker);
+    border: 0.3em outset var(--white);
     transform: scale(104%);
+}
+
+.item-category:active {
+    border: 0.5em outset var(--white);
+    background-color: rgb(153, 146, 136);
+    transform: scale(100%);
 }
 
 .bx-x {

@@ -3,14 +3,6 @@ require_once("../modules/sql.php");
 ?>
 <script>
     $(document).ready(function() {
-        $("td.td-small>button").click(function(){
-            $("#cart").load("../modules/shopcart.php", {id: this.id});
-        });
-
-        $("#clearbtn").click(function(){
-            $("#cart").load("../modules/clearcart.php");
-        });
-        
         $("#newcart").click(function(){
             if(confirm('An unsaved cart will be lost!'))
                 $('#cart').load('../modules/clearcart.php');
@@ -19,11 +11,10 @@ require_once("../modules/sql.php");
 </script>
 <title>WELCOME TO AMMUNATION</title>
 <main class="home_content">
-    <h1>WELCOME TO AMMUNATION <?php echo strtoupper($_SESSION["username"]) ?> <i class='bx bx-crosshair'></i></h1>
+    <h1 id="welcome-msg">WELCOME TO AMMUNATION <?php echo strtoupper($_SESSION["username"]) ?> <i class='bx bx-crosshair'></i></h1>
     <article class="dash-content row">
         <section class="col-5 ">
             <h1>Cart</h1>
-            <input class="links" id="clearbtn" type="button" value="Clear Cart">
         </section>
         <section class="col-5 product-list">
             <h1>Products</h1>
@@ -34,7 +25,7 @@ require_once("../modules/sql.php");
         <section class="cart col-5">
             <table id="cart" class="cart">
                     <tr>
-                        <th colspan="2" class="cart">ID Compra</th>
+                        <th colspan="2" class="cart"><input class="links" onclick="clearBtn()" id="clearbtn" type="button" value="Clear Cart"> ID Compra</th>
                         <td colspan="2" class="cart">
                             ID cliente
                             <select name="clientes" id="clientes">
@@ -90,13 +81,7 @@ require_once("../modules/sql.php");
                     <th class="th-small">Add</th>
                 </tr>
                 <?php 
-                    if(!isset($_GET["cat"]))
-                        $query = "SELECT * FROM productos";
-                    else {
-                        $cat = $con->real_escape_string($_GET["cat"]);
-
-                        $query = "SELECT * FROM productos WHERE id_categoria=". $cat;
-                    }
+                    if(!isset($_GET["cat"])) $query = "SELECT * FROM productos";
 
                     $result = $con->query($query);
 
@@ -108,7 +93,7 @@ require_once("../modules/sql.php");
                                 if($row["stock"] > 0) echo "<td class='td-small'><i class='bx bx-check'></i></td>";
                                 else echo "<td class='td-small'><i class='bx bx-x'></i></td>";
                         
-                        echo    "<td class='td-small'><button id='".$row["id"]."'><i class='bx bx-plus-circle'></i></button></td>
+                        echo    "<td class='td-small'><button id='".$row["id"]."' onclick='shopcart(this.id)'><i class='bx bx-plus-circle'></i></button></td>
                             </tr>";
                     }
                 ?>
@@ -116,18 +101,50 @@ require_once("../modules/sql.php");
         </section>
         <section class="col-2">
             <div class="grid-categories">
-                <a href='index.php'><img src="../img/icon.png" class="item-category"></a>
-                <a href='index.php?cat=1'><img src="../img/icons/assaultrifle.png" class="item-category"></a>
-                <a href='index.php?cat=2'><img src="../img/icons/submachinegun.png" class="item-category"></a>
-                <a href='index.php?cat=3'><img src="../img/icons/shotgun.png" class="item-category"></a>
-                <a href='index.php?cat=4'><img src="../img/icons/lmg.png" class="item-category"></a>
-                <a href='index.php?cat=5'><img src="../img/icons/sniperrifle.png" class="item-category"></a>
-                <a href='index.php?cat=6'><img src="../img/icons/handgun.png" class="item-category"></a>
-                <a href='index.php?cat=7'><img src="../img/icons/meleeweapon.png" class="item-category"></a>
-                <a href='index.php?cat=8'><img src="../img/icons/explosive.png" class="item-category"></a>
-                <a href='index.php?cat=9'><img src="../img/icons/ammo.png" class="item-category"></a>
+                <button id='0' onclick="categorySwitch(this.id)"><img src="../img/icon.png"  class="item-category"></button>
+                <?php
+                    $query = "SELECT * FROM categorias;";
+
+                    $result = $con->query($query);
+
+                    while($row = $result->fetch_assoc()){
+                        echo "<button id='".$row["id"]."' onclick='categorySwitch(this.id)'><img src='../img/icons/".$row["img"]."' class='item-category'></button>";
+                    }
+
+                ?>
             </div>
         </section>
+        <script>
+            function categorySwitch(id) {
+                $.ajax({
+                    url: "../modules/categorySwitch.php",
+                    type: "GET",
+                    data: {"cat": id},
+                    success: function(htmlBlock) {
+                        $("table.product-to-cart").html(htmlBlock);
+                    }
+                });
+            }
+
+            function shopcart(id){
+                
+                $.ajax({
+                    url: "../modules/shopcart.php",
+                    type: "POST",
+                    data: {"id": id},
+                    success: function(htmlBlock) {
+                        $("#cart").html(htmlBlock);
+                    },
+                    complete: function() {
+                       $("#totalPrice").load("../modules/totalPrice.php");
+                    }
+                });
+            };
+
+            function clearBtn(){
+                $("#cart").load("../modules/clearcart.php", null, function() {$("#totalPrice").load("../modules/totalPrice.php");});
+            };
+        </script>
         <section class="payment">
                 <div id="totalPrice">
                     <h1>Total: <?php echo $_SESSION["total"];?></h1>  
