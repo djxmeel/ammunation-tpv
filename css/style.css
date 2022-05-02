@@ -155,27 +155,26 @@ img.category-image-big{
 tr .category-options {
     color: inherit;
     text-decoration: none;
-    padding: 0 0.2em;
 }
 
 i {
     font-size: 1.5em;
 }
 
-a.category-options i:hover {
+.category-options i:hover {
     transform: translateY(-0.3em);
     transition: all 0.1s ease;
 }
 
-a.category-options.details i:hover {
+.category-options.details i:hover {
     color: orange;
 }
 
-a.category-options.edit i:hover {
+.category-options.edit i:hover {
     color: var(--primary-light);
 }
 
-a.category-options.delete i:hover {
+.category-options.delete i:hover {
     color: var(--secondary);
 }
 

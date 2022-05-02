@@ -34,6 +34,7 @@ require_once("../modules/sql.php");
                         </td>
                     </tr>
                     <tr>
+                        <th class="th-small">Delete</th>
                         <th>Product</th>
                         <th class="th-small">Quantity</th>
                         <th class="th-small">Unit</th>
@@ -52,6 +53,7 @@ require_once("../modules/sql.php");
 
                                     echo "
                                     <tr>
+                                        <td><i class='bx bx-x category-options delete td-small' ></i></td>
                                         <td>".$row["nombre"]."</td>
                                         <td class='td-small'>".$_SESSION["actual"]["quantity"][$indexSession]."</td>
                                         <td class='td-small'>".$row["precio"]."</td>
