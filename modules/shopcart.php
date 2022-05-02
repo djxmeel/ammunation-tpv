@@ -6,7 +6,8 @@
     if(!isset($_SESSION["actual"])){
         $_SESSION["actual"] = array(
             "id" => array(),
-            "quantity" => array(), 
+            "quantity" => array(),
+            "subtotal" => array() 
         );
     }
 
@@ -39,23 +40,34 @@
 </tr>
 <?php
     $indexSession = 0;
-
+    
     foreach ($_SESSION["actual"]["id"] as $elementId) {
         $query = "SELECT * FROM productos WHERE id=".$elementId;
 
         $result = $con->query($query);
-        
 
         while($row = $result->fetch_assoc()) {
+
+            $subtotal = $row["precio"]*$_SESSION["actual"]["quantity"][$indexSession];
+
+
+            $_SESSION["actual"]["subtotal"][$indexSession] = $subtotal;
+
             echo "
             <tr>
                 <td>".$row["nombre"]."</td>
                 <td class='td-small'>".$_SESSION["actual"]["quantity"][$indexSession]."</td>
                 <td class='td-small'>".$row["precio"]."</td>
-                <td class='td-small'>".$row["precio"]*$_SESSION["actual"]["quantity"][$indexSession]."</td>
+                <td class='td-small'>".$_SESSION["actual"]["subtotal"][$indexSession]."</td>
             </tr>";
         }
         
         $indexSession++;
+    }
+
+    $_SESSION["total"] = 0;
+
+    for ($i=0; $i < sizeof($_SESSION["actual"]["subtotal"]) ; $i++) { 
+        $_SESSION["total"] += $_SESSION["actual"]["subtotal"][$i];
     }
 ?>

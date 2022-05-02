@@ -27,6 +27,10 @@
             header("Location: ../login/login.php");
             exit(); 
         }
+
+        if(!isset($_SESSION["total"])){
+            $_SESSION["total"] = 0;
+        }
     ?>
     <div class="sidebar">
         <div class="logo_content">
@@ -41,7 +45,7 @@
                 </form>
             </li>
             <li>
-                <a href="../index/index.php">
+                <a id="newcart" href="../index/index.php">
                     <i class='bx bx-cart-add'></i>
                     <span class="links_name">NEW</span>
                 </a>

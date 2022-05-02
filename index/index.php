@@ -1,18 +1,19 @@
 <?php require_once("../modules/header.php");
 require_once("../modules/sql.php");
-
-//unset($_SESSION["actual"]);
 ?>
 <script>
     $(document).ready(function() {
         $("td.td-small>button").click(function(){
             $("#cart").load("../modules/shopcart.php", {id: this.id});
-            $("#totalPrice").load("../modules/totalprice.php");
         });
 
         $("#clearbtn").click(function(){
             $("#cart").load("../modules/clearcart.php");
-            $("#totalPrice").load("../modules/totalprice.php");
+        });
+        
+        $("#newcart").click(function(){
+            if(confirm('An unsaved cart will be lost!'))
+                $('#cart').load('../modules/clearcart.php');
         });
     });
 </script>
@@ -55,15 +56,15 @@ require_once("../modules/sql.php");
                                 $query = "SELECT * FROM productos WHERE id=".$elementId;
     
                                 $result = $con->query($query);
-                                
     
                                 while($row = $result->fetch_assoc()) {
+
                                     echo "
                                     <tr>
                                         <td>".$row["nombre"]."</td>
                                         <td class='td-small'>".$_SESSION["actual"]["quantity"][$indexSession]."</td>
                                         <td class='td-small'>".$row["precio"]."</td>
-                                        <td class='td-small subtotal'>".$row["precio"]*$_SESSION["actual"]["quantity"][$indexSession]."</td>
+                                        <td class='td-small'>".$_SESSION["actual"]["subtotal"][$indexSession]."</td>
                                     </tr>";
                                 }
                                 
@@ -73,6 +74,7 @@ require_once("../modules/sql.php");
                     ?>
                 </table>
         </section>
+
         <section class="col-5 product-to-cart">
             <table class="product-to-cart">
                 <tr>
@@ -128,7 +130,7 @@ require_once("../modules/sql.php");
         </section>
         <section class="payment">
                 <div id="totalPrice">
-                    <h1>Total: 0</h1>  
+                    <h1>Total: <?php echo $_SESSION["total"];?></h1>  
                 </div>
                 <div class="payment methods">
                     <input type="button" value="Cash" class="links payment"><br>
