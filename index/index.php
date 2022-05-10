@@ -24,50 +24,9 @@ require_once("../modules/sql.php");
         </section>
         <section class="cart col-5">
             <table id="cart" class="cart">
-                    <tr>
-                        <th colspan="2" class="cart"><input class="links" onclick="clearBtn()" id="clearbtn" type="button" value="Clear Cart"> ID Compra</th>
-                        <td colspan="2" class="cart">
-                            ID cliente
-                            <select name="clientes" id="clientes">
-                                <option value="1">1</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="th-small">Delete</th>
-                        <th>Product</th>
-                        <th class="th-small">Quantity</th>
-                        <th class="th-small">Unit</th>
-                        <th class="th-small">Sub.</th>
-                    </tr>
-                    <?php
-                        if(isset($_SESSION["actual"])){
-                            $indexSession = 0;
-    
-                            foreach ($_SESSION["actual"]["id"] as $elementId) {
-                                $query = "SELECT * FROM productos WHERE id=".$elementId;
-    
-                                $result = $con->query($query);
-    
-                                while($row = $result->fetch_assoc()) {
-
-                                    echo "
-                                    <tr>
-                                        <td><i class='bx bx-x category-options delete td-small' ></i></td>
-                                        <td>".$row["nombre"]."</td>
-                                        <td class='td-small'>".$_SESSION["actual"]["quantity"][$indexSession]."</td>
-                                        <td class='td-small'>".$row["precio"]."</td>
-                                        <td class='td-small'>".$_SESSION["actual"]["subtotal"][$indexSession]."</td>
-                                    </tr>";
-                                }
-                                
-                                $indexSession++;
-                            }
-                        }
-                    ?>
-                </table>
+                <?php include("../modules/refreshCart.php") ?>        
+            </table>
         </section>
-
         <section class="col-5 product-to-cart">
             <table class="product-to-cart">
                 <tr>
@@ -129,13 +88,12 @@ require_once("../modules/sql.php");
             }
 
             function shopcart(id){
-                
                 $.ajax({
                     url: "../modules/shopcart.php",
                     type: "POST",
                     data: {"id": id},
                     success: function(htmlBlock) {
-                        $("#cart").html(htmlBlock);
+                        $("table#cart").html(htmlBlock);
                     },
                     complete: function() {
                        $("#totalPrice").load("../modules/totalPrice.php");
@@ -143,8 +101,27 @@ require_once("../modules/sql.php");
                 });
             };
 
+            function deleteFromCart(id){
+                $.ajax({
+                    url: "../modules/deleteFromCart.php",
+                    type: "POST",
+                    data: {"id": id},
+                    success: function() {
+                        $("#cart").load("../modules/refreshCart.php");
+                        
+                    },
+                    complete: function() {
+                        $("#totalPrice").load("../modules/totalPrice.php");
+                    }
+                });
+            }
+
             function clearBtn(){
-                $("#cart").load("../modules/clearcart.php", null, function() {$("#totalPrice").load("../modules/totalPrice.php");});
+                $("#cart").load("../modules/clearcart.php", 
+                                null, 
+                                function() {
+                                    $("#totalPrice").load("../modules/totalPrice.php");
+                                });
             };
         </script>
         <section class="payment">

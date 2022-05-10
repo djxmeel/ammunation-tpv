@@ -20,11 +20,10 @@
         array_push($_SESSION["actual"]["id"], $_POST["id"]);
         array_push($_SESSION["actual"]["quantity"], 1);
     } 
-    
 ?>
 
 <tr>
-<th colspan="2" class="cart"><input class="links" onclick="clearBtn()" id="clearbtn" type="button" value="Clear Cart"> ID Compra</th>
+<th colspan="3" class="cart"><input class="links" onclick="clearBtn()" id="clearbtn" type="button" value="Clear Cart"> ID Compra</th>
     <td colspan="2" class="cart">
         ID cliente
         <select name="clientes" id="clientes">
@@ -33,6 +32,7 @@
     </td>
 </tr>
 <tr>
+    <th class="th-small">Delete</th>
     <th>Product</th>
     <th class="th-small">Quantity</th>
     <th class="th-small">Unit</th>
@@ -55,6 +55,7 @@
 
             echo "
             <tr>
+                <td class='td-small'><button id='".$elementId."' onclick='deleteFromCart(this.id)'><i class='bx bx-x'></i></button></td>
                 <td>".$row["nombre"]."</td>
                 <td class='td-small'>".$_SESSION["actual"]["quantity"][$indexSession]."</td>
                 <td class='td-small'>".$row["precio"]."</td>
@@ -64,7 +65,8 @@
         
         $indexSession++;
     }
-
+?>
+<?php
     $_SESSION["total"] = 0;
 
     for ($i=0; $i < sizeof($_SESSION["actual"]["subtotal"]) ; $i++) { 
