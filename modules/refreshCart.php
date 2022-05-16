@@ -8,7 +8,7 @@
     </td>
 </tr>
 <tr>
-    <th class="th-small">Deleteeee</th>
+    <th class="th-small">Delete</th>
     <th>Product</th>
     <th class="th-small">Quantity</th>
     <th class="th-small">Unit</th>
@@ -36,6 +36,8 @@
                                 
             $indexSession++;
         }
+    } else {
+        echo "<tr><td>shit aint set".$_SESSION["actual"]."</td></tr>";
     }
 ?>
 <?php
