@@ -105,13 +105,13 @@ require_once("../modules/sql.php");
                 $.ajax({
                     url: "../modules/deleteFromCart.php",
                     type: "POST",
-                    data: {"id": id},
-                    success: function() {
-                        $("#cart").load("../modules/refreshCart.php");
-                        
-                    },
-                    complete: function() {
-                        $("#totalPrice").load("../modules/totalPrice.php");
+                    data: {"id_delete": id},
+                    complete: function(){
+                        $("table#cart").load("../modules/refreshCart.php",
+                                    null,
+                                    function(){
+                                        $("#totalPrice").load("../modules/totalPrice.php");
+                                    });
                     }
                 });
             }
