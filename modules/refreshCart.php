@@ -1,3 +1,27 @@
+<?php
+    if(session_status() == PHP_SESSION_NONE) session_start();
+
+    require_once("sql.php");
+
+    if(isset($_POST["id_delete"])){
+        $id = $_POST["id_delete"];
+        $index = array_search($id, $_SESSION["actual"]["id"]);
+        
+        var_dump($_SESSION["actual"]);
+
+        if($index !== false){
+            if($_SESSION["actual"]["quantity"][$index] > 1) {
+                $_SESSION["actual"]["subtotal"][$index] = $_SESSION["actual"]["subtotal"][$index] - ($_SESSION["actual"]["subtotal"][$index] / $_SESSION["actual"]["quantity"][$index]);
+                $_SESSION["actual"]["subtotal"][$index] = intval($_SESSION["actual"]["subtotal"][$index]);
+                $_SESSION["actual"]["quantity"][$index]--;
+            } else {
+                array_splice($_SESSION["actual"]["id"], $index, 1);
+                array_splice($_SESSION["actual"]["quantity"], $index, 1);
+                array_splice($_SESSION["actual"]["subtotal"], $index, 1);
+            }
+        }
+    }
+?>
 <tr>
     <th colspan="3" class="cart"><input class="links" onclick="clearBtn()" id="clearbtn" type="button" value="Clear Cart"> ID Compra</th>
     <td colspan="2" class="cart">
@@ -36,8 +60,6 @@
                                 
             $indexSession++;
         }
-    } else {
-        echo "<tr><td>shit aint set".$_SESSION["actual"]."</td></tr>";
     }
 ?>
 <?php
