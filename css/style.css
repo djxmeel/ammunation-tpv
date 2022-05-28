@@ -394,3 +394,12 @@ td.td-small>button:active {
     color: var(--primary-light);
     transform: scale(108%) rotateZ(180deg);
 }
+
+.bx-caret-right-circle {
+    transition: all 0.3s;
+}
+
+.bx-caret-right-circle:hover {
+    color: var(--secondary);
+    transform: scale(108%);
+}

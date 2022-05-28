@@ -4,7 +4,9 @@
         if(isset($_SESSION["loggedAs"])){
             header("Location: ../index/index.php");
             exit();
-        } 
+        }
+
+        require_once("../modules/sql.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,12 +17,25 @@
     <link rel="stylesheet" href="../css/logstyle.css">
     <title>LOGIN TO AMMUNATION</title>
 </head>
+<?php
+    $user = "";
+    
+    if(isset($_GET["to"])){
+        $query = "SELECT usuario FROM empleados WHERE id=". $_GET["to"];
+    
+        $result = $con->query($query);
+    
+        while($row = $result->fetch_assoc()){
+            $user = $row["usuario"];
+        }
+    }
+?>
 <body>
     <main class="login-field">
         <img src="../img/banner.png" alt="AMMUNATION" class="login-banner">
         <form action="processlog.php" method="post">
             <h2>Login</h2>
-            User : <input type="text" name="user" placeholder="Username" size="28">
+            User : <input type="text" name="user" placeholder="Username" size="28" value="<?php echo $user?>">
             <br>
             Pass : <input type="password" name="pass" placeholder="Password" size="28">
             <div><?php 

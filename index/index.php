@@ -13,7 +13,7 @@ require_once("../modules/sql.php");
 <main class="home_content">
     <article class="dash-content row">
         <section class="col-5 ">
-            <h1>Cart <?php echo strtoupper($_SESSION["employeeId"]) ?></h1>
+            <h1>Cart</h1>
         </section>
         <section class="col-5 product-list">
             <h1>Products</h1>
