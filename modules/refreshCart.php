@@ -26,8 +26,19 @@
     <th colspan="3" class="cart"><input class="links" onclick="clearBtn()" id="clearbtn" type="button" value="Clear Cart"> ID Compra</th>
     <td colspan="2" class="cart">
         ID cliente
-        <select name="clientes" id="clientes">
-            <option value="1">1</option>
+        <select name="clientes" id="clientes" onchange="switchClient(this.value)">
+        <?php
+            $query = "SELECT dni FROM clientes";
+
+            $result = $con->query($query);
+
+            while($row = $result->fetch_assoc()) {
+                if($row["dni"] == $_SESSION["client"])
+                echo "<option selected value='".$row["dni"]."'>".$row["dni"]."</option>";
+                else
+                    echo "<option value='".$row["dni"]."'>".$row["dni"]."</option>";
+            }
+        ?>
         </select>
     </td>
 </tr>

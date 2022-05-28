@@ -122,6 +122,14 @@ require_once("../modules/sql.php");
                                     $("#totalPrice").load("../modules/totalPrice.php");
                                 });
             };
+
+            function switchClient(value){
+                $.ajax({
+                    url: "../modules/switchClient.php",
+                    type: "POST",
+                    data: {"dni": value},
+                });
+            };
         </script>
         <section class="payment">
                 <div id="totalPrice">
