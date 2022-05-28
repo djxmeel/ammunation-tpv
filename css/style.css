@@ -376,3 +376,8 @@ td.td-small>button:hover {
 td.td-small>button:active {
     transform: scale(100%);
 }
+
+.bx-money-withdraw.list:hover {
+    color: green;
+    transition: all 0.2s;
+}

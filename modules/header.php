@@ -52,7 +52,7 @@
                 <span class="tooltip">NEW</span>
             </li>
             <li>
-                <a href='../modules/loadcart.php'>
+                <a href='../purchases/loadcart.php'>
                     <i class='bx bx-cart-download'></i>
                     <span class='links_name'>LOAD</span>
                 </a>
@@ -66,7 +66,7 @@
                 <span class="tooltip">SAVE CURRENT</span>
             </li>
             <li>
-                <a href="../modules/refund.php">
+                <a href="../purchases/refund.php">
                     <i class='bx bx-money-withdraw'></i>
                     <span class="links_name">REFUND</span>
                 </a>
