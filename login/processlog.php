@@ -15,20 +15,22 @@
         exit();
     }
 
-    $stmt= $con->prepare("SELECT usuario, pass FROM empleados WHERE usuario=? AND pass=?"); //prepare statement
+    $stmt= $con->prepare("SELECT id,usuario, pass FROM empleados WHERE usuario=? AND pass=?"); //prepare statement
 
     $stmt->bind_param("ss", $username, $password); // bind parameters (string, string)
     $stmt->execute();                               // execute the query
-    $stmt->bind_result($username, $password);
-    $stmt->store_result();
     
-    if($stmt->num_rows() === 1){
-        $_SESSION["loggedAs"] = true;
-        $_SESSION["username"] = $username;
+    $result = $stmt->get_result();
+
+        while($row = $result->fetch_assoc()){
+
+            $_SESSION["loggedAs"] = true;
+            $_SESSION["username"] = $username;
+            $_SESSION["employeeId"] = $row["id"];
+            header("Location: ../index/index.php");
+            exit();
+        }
         
-        header("Location: ../index/index.php");
-        exit();
-    }
 
     $_SESSION["nocredentials"] = true;
     header("Location: ../login/login.php");

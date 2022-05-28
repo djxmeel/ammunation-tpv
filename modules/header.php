@@ -52,21 +52,21 @@
                 <span class="tooltip">NEW</span>
             </li>
             <li>
-                <a href='../admin/users.php'>
+                <a href='../modules/loadcart.php'>
                     <i class='bx bx-cart-download'></i>
                     <span class='links_name'>LOAD</span>
                 </a>
                 <span class='tooltip'>LOAD</span>
             </li>
             <li>
-                <a href="../product/product_list.php">
+                <a href="../modules/savecart.php">
                     <i class='bx bx-save' ></i>
                     <span class="links_name">SAVE CURRENT</span>
                 </a>
                 <span class="tooltip">SAVE CURRENT</span>
             </li>
             <li>
-                <a href="../categories/category_list.php">
+                <a href="../modules/refund.php">
                     <i class='bx bx-money-withdraw'></i>
                     <span class="links_name">REFUND</span>
                 </a>
@@ -80,7 +80,7 @@
                 <span class="tooltip">CUSTOMERS</span>
             </li>
             <li>
-                <a href="../purchases/purchases_list.php">
+                <a href="../login/switchuser.php">
                     <i class='bx bxs-user-account'></i>
                     <span class="links_name">SWITCH USER</span>
                 </a>

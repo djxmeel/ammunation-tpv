@@ -11,10 +11,9 @@ require_once("../modules/sql.php");
 </script>
 <title>WELCOME TO AMMUNATION</title>
 <main class="home_content">
-    <h1 id="welcome-msg">WELCOME TO AMMUNATION <?php echo strtoupper($_SESSION["username"]) ?> <i class='bx bx-crosshair'></i></h1>
     <article class="dash-content row">
         <section class="col-5 ">
-            <h1>Cart</h1>
+            <h1>Cart <?php echo strtoupper($_SESSION["employeeId"]) ?></h1>
         </section>
         <section class="col-5 product-list">
             <h1>Products</h1>
