@@ -377,7 +377,20 @@ td.td-small>button:active {
     transform: scale(100%);
 }
 
+.bx-money-withdraw.list {
+    transition: all 0.3s;
+}
+
 .bx-money-withdraw.list:hover {
     color: green;
-    transition: all 0.2s;
+    transform: scale(108%);
+}
+
+.bx-down-arrow-alt {
+    transition: all 0.4s;
+}
+
+.bx-down-arrow-alt:hover {
+    color: var(--primary-light);
+    transform: scale(108%) rotateZ(180deg);
 }

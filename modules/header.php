@@ -39,10 +39,11 @@
         </div>
         <ul class="nav_list">
             <li>
-                <i class='bx bx-search-alt' ></i>
-                <form action="../product/product_list.php" method="GET">
-                    <input type="text" placeholder="Search..." name="search" id="search">
-                </form>
+                <a href="../index/index.php">
+                    <i class='bx bx-home-alt-2'></i>
+                    <span class="links_name">MAIN</span>
+                </a>
+                <span class="tooltip">Main</span>
             </li>
             <li>
                 <a id="newcart" href="../index/index.php">
