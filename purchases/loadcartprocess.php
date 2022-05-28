@@ -12,13 +12,11 @@
 
     unset($_SESSION["actual"]);
 
-    if(!isset($_SESSION["actual"])){
-        $_SESSION["actual"] = array(
-            "id" => array(),
-            "quantity" => array(),
-            "subtotal" => array() 
+    $_SESSION["actual"] = array(
+        "id" => array(),
+        "quantity" => array(),
+        "subtotal" => array() 
         );
-    }
 
     while($row = $result->fetch_assoc()){
         $_SESSION["actual"]["id"][$index] = $row["id_producto"];
@@ -28,6 +26,8 @@
     }
     
     $query = "SELECT dni_cliente FROM compras WHERE id=".$id;
+
+    $result = $con->query($query);
 
     while($row = $result->fetch_assoc()){
         $_SESSION["client"] = $row["dni_cliente"];
