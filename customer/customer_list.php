@@ -36,8 +36,10 @@
                             <td class='category-options'>".$row["direccion"]."</td>
                             <td class='category-options'>".$row["contacto"]."</td>
                             <td class='category-options'>".$row["fecha_alta"]."</td>
-                            <td><a class='category-options edit' href='customer_list.php?dni=".$row["dni"]."'><i class='bx bx-edit-alt' ></i></a></td>
-                            <td><a class='category-options delete' onClick=\"return confirm('Are you sure?')\" href='customer_list.php?deleteid=".$row["dni"]."'><i class='bx bx-x' ></i></a></td>
+                            <td><a class='category-options edit' href='customer_list.php?dni=".$row["dni"]."'><i class='bx bx-edit-alt' ></i></a></td>";
+                    if($row["dni"] !== "GENERIC")
+                        echo    
+                            "<td><a class='category-options delete' onClick=\"return confirm('Are you sure?')\" href='customer_list.php?deleteid=".$row["dni"]."'><i class='bx bx-x' ></i></a></td>
                         <tr>";
                 } 
             ?>
