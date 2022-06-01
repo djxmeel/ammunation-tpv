@@ -104,6 +104,10 @@ td .links, td .links input[type="button"]  {
     padding: 0.1em 0.5em;
 }
 
+dialog .links{
+    padding: 0.5em 1em;
+}
+
 .print {
     padding: 0.2em 1em;
 }
@@ -402,4 +406,19 @@ td.td-small>button:active {
 .bx-caret-right-circle:hover {
     color: var(--secondary);
     transform: scale(108%);
+}
+
+td.product-row{
+    height: 2.5em;
+    border-top: 2px solid var(--white);
+}
+
+.calculator {
+    color: var(--white);
+    display: flex;
+    justify-content:safe;
+}
+
+.calculator #change {
+    padding-left: 2em;
 }

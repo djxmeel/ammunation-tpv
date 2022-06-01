@@ -1,4 +1,4 @@
 <?php
     session_start();
 ?>
-<h1>Total: <?php echo $_SESSION["total"];?></h1>
+<h1>Total: <?php if(isset($_SESSION["total"])) echo $_SESSION["total"];?></h1>
