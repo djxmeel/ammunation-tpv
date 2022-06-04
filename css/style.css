@@ -124,6 +124,10 @@ section.category-list {
     height: 100%;
 }
 
+.category-list.big{
+    flex-grow: 1;
+}
+
 section.category-list table tr td {
     font-size: 1.3em;
     list-style: none;
@@ -413,10 +417,18 @@ td.product-row{
     border-top: 2px solid var(--white);
 }
 
+.padcolumns {
+    width: 60%;
+}
+
+.padcolumns-big{
+    width: 80%;
+}
+
 .calculator {
     color: var(--white);
     display: flex;
-    justify-content:safe;
+    justify-content: safe;
 }
 
 .calculator #change {

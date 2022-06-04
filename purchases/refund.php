@@ -3,8 +3,8 @@
 <title>AMMUNATION: Refunds</title>
 <main class="home_content">
     <h1>Refunds <i class="bx bxs-star"></i></h1>
-    <section class="category-list">
-        <table>
+    <section class="category-list big">
+        <table class="padcolumns-big">
             <tr>
                 <th>Employee</th>
                 <th>DNI</th>

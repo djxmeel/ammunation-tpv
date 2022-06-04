@@ -3,8 +3,8 @@
 <title>AMMUNATION: Customers</title>
 <main class="home_content">
     <h1>Customers <i class="bx bxs-star"></i></h1>
-    <section class="category-list">
-        <table>
+    <section class="category-list big">
+        <table class="padcolumns-big">
             <tr>
                 <th class="break-none">DNI</th>
                 <th>Name</th>

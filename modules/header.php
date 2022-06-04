@@ -96,7 +96,7 @@
                         <div class="name"><?php echo strtoupper($_SESSION["username"]) ?></div>
                     </div>
                 </div>
-                <a href="../index/index.php?logout=1">
+                <a href="../modules/salesofday.php">
                     <i class='bx bx-log-out' id="log_out"></i>
                 </a>
             </div>

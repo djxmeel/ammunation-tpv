@@ -15,7 +15,7 @@
         exit();
     }
 
-    $stmt= $con->prepare("SELECT id,usuario, pass FROM empleados WHERE usuario=? AND pass=?"); //prepare statement
+    $stmt= $con->prepare("SELECT * FROM empleados WHERE usuario=? AND pass=?"); //prepare statement
 
     $stmt->bind_param("ss", $username, $password); // bind parameters (string, string)
     $stmt->execute();                               // execute the query
@@ -27,6 +27,7 @@
             $_SESSION["loggedAs"] = true;
             $_SESSION["username"] = $username;
             $_SESSION["employeeId"] = $row["id"];
+            $_SESSION["isadmin"] = $row["isadmin"];
             header("Location: ../index/index.php");
             exit();
         }
