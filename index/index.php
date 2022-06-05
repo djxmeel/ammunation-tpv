@@ -17,6 +17,7 @@ require_once("../modules/sql.php");
         </section>
         <section class="col-5 product-list">
             <h1>Products</h1>
+            <h2 id="idsearch">Search : <input type="text" name="productcode" id="productcode" onkeyup="codesearch(this.value)" placeholder="Code"></h2>
         </section>
         <section class="col-2">
             <h1>Categories</h1>
@@ -29,14 +30,9 @@ require_once("../modules/sql.php");
         <section class="col-5 product-to-cart">
             <table class="product-to-cart">
                 <tr>
-                    <th colspan="3">
-                        Search :
-                        <input type="text" name="productcode" id="productcode" placeholder="Code">
-                    </th>
-                </tr>
-                <tr>
                     <th class="th-small">Image</th>
                     <th>Name</th>
+                    <th>Code</th>
                     <th class="th-small">Stock</th>
                     <th class="th-small">Add</th>
                 </tr>
@@ -48,7 +44,8 @@ require_once("../modules/sql.php");
                     while($row = $result->fetch_assoc()){
                         echo "<tr>
                                 <td class='td-small product-row'><img src='../img/guns/".$row["img"]."'></td>
-                                <td class='product-row'>".$row["nombre"]."</td>";
+                                <td class='product-row'>".$row["nombre"]."</td>
+                                <td class='product-row'>".$row["code"]."</td>";
 
                                 if($row["stock"] > 0) echo "<td class='td-small product-row'><i class='bx bx-check'></i></td>";
                                 else echo "<td class='td-small'><i class='bx bx-x'></i></td>";
@@ -198,6 +195,17 @@ require_once("../modules/sql.php");
                     $("#change").text(htmlBlock);
                 }
             })
+        }
+
+        function codesearch(value){
+            $.ajax({
+                url: "../modules/searchbycode.php",
+                type: "GET",
+                data: {"code": value},
+                success: function(htmlBlock) {
+                    $("table.product-to-cart").html(htmlBlock);
+                }
+            });
         }
     </script>
 </body>

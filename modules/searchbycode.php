@@ -2,12 +2,6 @@
     include_once("sql.php");
 ?>
 <tr>
-    <th colspan="3">
-        Search :
-        <input type="text" name="productcode" id="productcode" placeholder="Code">
-    </th>
-</tr>
-<tr>
     <th class="th-small">Image</th>
     <th>Name</th>
     <th>Code</th>
@@ -15,14 +9,10 @@
     <th class="th-small">Add</th>
 </tr>
 <?php 
-    if(isset($_GET["cat"])){
-        if($_GET["cat"] == 0){
-            $query = "SELECT * FROM productos"; // all categories option
-        } else {
-            $cat = $con->real_escape_string($_GET["cat"]);
+    if(isset($_GET["code"])){
+            $code = $con->real_escape_string($_GET["code"]);
 
-            $query = "SELECT * FROM productos WHERE id_categoria=". $cat;
-        }
+            $query = "SELECT * FROM productos WHERE code LIKE '". $code ."%'";
 
             $result = $con->query($query);
 

@@ -434,3 +434,8 @@ td.product-row{
 .calculator #change {
     padding-left: 2em;
 }
+
+#idsearch {
+    color: var(--white);
+    margin-bottom: 0.3em;
+}
