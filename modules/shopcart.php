@@ -82,9 +82,11 @@
     }
 ?>
 <?php
-    $_SESSION["total"] = 0;
+    if(isset($_SESSION["actual"]["subtotal"])){
+        $_SESSION["total"] = 0;
 
-    for ($i=0; $i < sizeof($_SESSION["actual"]["subtotal"]) ; $i++) { 
-        $_SESSION["total"] += $_SESSION["actual"]["subtotal"][$i];
+        for ($i=0; $i < sizeof($_SESSION["actual"]["subtotal"]) ; $i++) { 
+            $_SESSION["total"] += $_SESSION["actual"]["subtotal"][$i];
+        }
     }
 ?>

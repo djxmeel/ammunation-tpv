@@ -74,7 +74,7 @@
     }
 ?>
 <?php
-    if(isset($_SESSION["actual"])){
+    if(isset($_SESSION["actual"]["subtotal"])){
         $_SESSION["total"] = 0;
 
         for ($i=0; $i < sizeof($_SESSION["actual"]["subtotal"]) ; $i++) { 
