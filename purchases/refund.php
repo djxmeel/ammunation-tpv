@@ -39,6 +39,9 @@
                 data: {"id": id},
                 success: function(htmlBlock) {
                     $("table").html(htmlBlock);
+                },
+                complete: function(){
+                    location.reload();
                 }
             });
         }

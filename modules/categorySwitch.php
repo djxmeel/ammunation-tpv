@@ -2,12 +2,6 @@
     include_once("sql.php");
 ?>
 <tr>
-    <th colspan="3">
-        Search :
-        <input type="text" name="productcode" id="productcode" placeholder="Code">
-    </th>
-</tr>
-<tr>
     <th class="th-small">Image</th>
     <th>Name</th>
     <th>Code</th>

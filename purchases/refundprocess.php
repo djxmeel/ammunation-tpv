@@ -1,3 +1,4 @@
+<?php  require_once("../modules/sql.php"); ?>
 <tr>
     <th>Employee</th>
     <th>DNI</th>
@@ -6,8 +7,7 @@
     <th>Refund</th>
 </tr>
 <?php
-    require_once("../modules/sql.php");
-
+   
     $id = $_POST["id"];
 
     $query = "DELETE FROM compras WHERE id=".$id;
